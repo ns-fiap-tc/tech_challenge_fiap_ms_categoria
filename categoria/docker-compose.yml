@@ -1,0 +1,75 @@
+# run command:  docker-compose up -d
+# docker run -it lanchonete-produto-produto bash
+# mvn -DskipTests -DskipITs=true clean package spring-boot:repackage
+
+
+name: lanchonete
+
+services:
+    categoria:
+        container_name: categoria
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 8083:8080
+        depends_on:
+            dbcatserver:
+                condition: service_healthy
+        networks:
+            - app-network
+            - categoria-network
+            - external-network
+
+    dbcatserver:
+        image: postgres:16.5-alpine3.20
+        container_name: dbcatserver
+        hostname: dbcatserver
+        #restart: always
+        env_file:
+            - ./.env
+        environment:
+            #           POSTGRES_MULTIPLE_DATABASES: "DB1","ownerOfDB1": "DB2","ownerOfDB2": ..."DB(n)", "ownerOfDB(n)"
+            POSTGRES_DB: ${DB_NAME}
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASS}
+            POSTGRES_HOST_AUTH_METHOD: md5
+        healthcheck:
+            test: ["CMD-SHELL", "psql -U ${DB_USER} -d ${DB_NAME} -c 'SELECT 1' || exit 1"]
+            interval: 5s    # Time between health check attempts
+            timeout: 5s     # Time to wait for a response from the health check command
+            retries: 5      # Number of retries before marking the container as unhealthy
+        ports:
+            - 5435:5432
+        networks:
+            - categoria-network
+        volumes:
+            - ./volumes/data:/var/lib/postgresql/data
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.5'
+                    memory: 200M
+                reservations:
+                    cpus: '0.5'
+                    memory: 200M
+
+networks:
+    categoria-network:
+        name: categoria-net
+        driver: bridge
+        internal: true
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.5.3.0/24
+
+    app-network:
+        name: app-net
+        driver: bridge
+        external: true
+        
+    external-network:
+        name: lanch-net
+        driver: bridge
+        external: true

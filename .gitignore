@@ -36,4 +36,4 @@ build/
 volumes
 
 ### Security ###
-.env
+#.env
