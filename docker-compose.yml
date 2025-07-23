@@ -11,6 +11,14 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        env_file:
+            - .env
+        environment:
+            DB_NAME: ${DB_NAME}
+            DB_USER: ${DB_USER}
+            DB_PASSWORD: ${DB_PASS}
+            DB_HOST: dbcatserver
+            DB_PORT: 5432
         ports:
             - 8083:8080
         depends_on:
@@ -27,7 +35,7 @@ services:
         hostname: dbcatserver
         #restart: always
         env_file:
-            - ./.env
+            - .env
         environment:
             #           POSTGRES_MULTIPLE_DATABASES: "DB1","ownerOfDB1": "DB2","ownerOfDB2": ..."DB(n)", "ownerOfDB(n)"
             POSTGRES_DB: ${DB_NAME}
