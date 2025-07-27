@@ -176,7 +176,7 @@
 							<exclude>**br/com/fiap/lanchonete/categoria/commons/persistence/**/*</exclude>
 							<exclude>**br/com/fiap/lanchonete/categoria/device/**/*</exclude>
 							<exclude>**br/com/fiap/lanchonete/categoria/infrastructure/**/*</exclude>
-							<exclude>**/*Application.class</exclude> <exclude>**/com/seuprojeto/excecao/**/*.class</exclude>
+							<exclude>**/*Application.class</exclude>
 							<exclude>**/*Test.class</exclude>
 							<exclude>**/*IT.class</exclude> </excludes>
 					</configuration>
