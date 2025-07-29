@@ -1,6 +1,17 @@
 # FIAP Tech Challenge - Microsserviço de categoria
 
+[![Terraform Deploy](https://github.com/ns-fiap-tc/tech_challenge_fiap_ms_categoria/actions/workflows/deploy.yml/badge.svg)](https://github.com/ns-fiap-tc/tech_challenge_fiap_ms_categoria/actions/workflows/deploy.yml)
+[![SonarQube](https://github.com/ns-fiap-tc/tech_challenge_fiap_ms_categoria/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/ns-fiap-tc/tech_challenge_fiap_ms_categoria/actions/workflows/sonarcloud.yml)
+[![Build and Push Docker Images](https://github.com/ns-fiap-tc/tech_challenge_fiap_ms_categoria/actions/workflows/docker-build.yml/badge.svg)](https://github.com/ns-fiap-tc/tech_challenge_fiap_ms_categoria/actions/workflows/docker-build.yml)
+
 Este é o repositório que contém o código fonte do serviço de categoria da aplicação [Lanchonete App](https://github.com/ns-fiap-tc/tech_challenge_fiap). Nele você também encontrará arquivos de configuração do Terraform que fazem o deploy da aplicação na AWS.
+
+## Cobertura de Testes
+O projeto contém testes automatizados e Sonar integrado, abaixo evidência de cobertura dos testes + link de referência para os dados do Sonar
+<img width="1755" height="213" alt="Testes aplicação" src="https://github.com/user-attachments/assets/0c9ec75e-b73b-4e01-ab3f-a2645c3a32e5" />
+<img width="1414" height="949" alt="Screenshot 2025-07-29 at 11 58 26" src="https://github.com/user-attachments/assets/1d5769e8-97c5-44be-9906-d33ee833c6fa" />
+
+- Link Sonar: https://sonarcloud.io/summary/new_code?id=ns-fiap-tc_tech_challenge_fiap_ms_categoria&branch=main
 
 ## Passos para o provisionamento
 > Para completo funcionamento da plataforma, é necessário seguir o seguinte fluxo de provisionamento:
